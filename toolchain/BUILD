@@ -6,6 +6,7 @@ cc_toolchain_suite(
         # "empty": ":darwin_x86_64_toolchain",
         "darwin_x86_64": ":darwin_x86_64_toolchain",
         "darwin": ":darwin_x86_64_toolchain",
+        "k8": ":darwin_x86_64_toolchain",
         # "k8": ":k8_toolchain",
     },
 )

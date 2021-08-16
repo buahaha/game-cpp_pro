@@ -5,10 +5,12 @@ cc_test(
   size = "small",
   srcs = [
     "hello_test_me.cc",
-    "phoenix_test.cc",
-     ":MyOtherLibrary", 
+    "phoenix_test.cc", 
   ],
-  deps = ["@com_google_googletest//:gtest_main"],
+  deps = [
+    "@com_google_googletest//:gtest_main", 
+    ":MyOther"
+  ],
 )
 
 
@@ -27,7 +29,7 @@ cc_test(
     # "@molten-vk-xcframework//:molten-vk-xcframework",
     "@glfw-include//:glfw-include",
     "@glfw-lib//:glfw-lib",
-    ":MyOtherLibrary",
+    # ":MyOtherLibrary",
     ],
 )
 
@@ -44,3 +46,33 @@ objc_library(
   ],
 )
 
+apple_static_library(
+  name = "MyOther",
+  platform_type = "macos",
+  sdk_frameworks = [
+    "Metal",
+    "Foundation",
+    "QuartzCore",
+    "IOKit",
+    "UIKit",
+    "IOSurface",
+  ],
+)
+
+# load(
+#     "@build_bazel_rules_apple//apple:apple.bzl",
+#     "apple_static_framework_import",
+# )
+
+# apple_static_framework_import(
+#   name = "frameworks",
+#   sdk_frameworks = [
+#     "Metal",
+#     "Foundation",
+#     "QuartzCore",
+#     "IOKit",
+#     "UIKit",
+#     "IOSurface",
+#   ],
+#   framework_imports = [],
+# )
