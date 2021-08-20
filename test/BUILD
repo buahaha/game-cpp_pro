@@ -1,3 +1,5 @@
+
+
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_test(
@@ -9,9 +11,15 @@ cc_test(
   ],
   deps = [
     "@com_google_googletest//:gtest_main", 
-    ":MyOther"
+    ":MyOtherLibrary"
+  ],
+  copts = [
+    "-std=c++17",
   ],
 )
+
+  # --test_output (summary, errors, all or streamed; default: "summary")
+  # --test_summary (short, terse, detailed, none or testcase; default: "short")
 
 
 
@@ -22,15 +30,48 @@ cc_test(
   ],
   deps = [
     "@com_google_googletest//:gtest_main",
+    ":MyOtherLibrary",
+    "@vulkan-repo//:vulkan",
     "@molten-vk-dylib//:molten-vk",
-    # "@vulkan-repo//:vulkan",
-    # "@macos-lib//:macos-lib",
     "@molten-vk-include//:molten-vk-include",
-    # "@molten-vk-xcframework//:molten-vk-xcframework",
     "@glfw-include//:glfw-include",
     "@glfw-lib//:glfw-lib",
-    # ":MyOtherLibrary",
+    # "@molten-vk-xcframework//:molten-vk-xcframework",
+    # "@macos-lib//:macos-lib",
     ],
+  copts = [
+    "-std=c++17",
+    # "-I",
+    # "-Iexternal",
+  ],
+)
+
+cc_test(
+  name = "python_test",
+  srcs = [
+    "python_test.cc",
+  ],
+  deps = [
+    "@com_google_googletest//:gtest_main",
+    "@python-h//:python",
+    "@python-h//:cpython",
+    "@dev-usr-lib//:libcpp_tbd",
+  ],
+)
+
+cc_test(
+  name = "node_test",
+  srcs = [
+    "node_test.cc",
+  ],
+  deps = [
+    "@com_google_googletest//:gtest_main",
+    "@node-include//:node",
+    "@local-include//:uv",
+    "@local-lib//:libuv",
+    "@dev-usr-lib//:libcpp_tbd",
+    "@dev-usr-include//:assert",
+  ],
 )
 
 objc_library(
@@ -41,7 +82,7 @@ objc_library(
     "Foundation",
     "QuartzCore",
     "IOKit",
-    "UIKit",
+    # "UIKit", iOS
     "IOSurface",
   ],
 )
@@ -54,7 +95,7 @@ apple_static_library(
     "Foundation",
     "QuartzCore",
     "IOKit",
-    "UIKit",
+    # "UIKit",
     "IOSurface",
   ],
 )

@@ -2,13 +2,11 @@ new_local_repository(
     name = "vulkan-repo",
     path = "/usr/local/include/vulkan",
     build_file = "third_party/vulkan.BUILD",
-    # visibility = ["//visibility:public"],
 )
 new_local_repository(
     name = "molten-vk-dylib",
     path = "/usr/local/lib/",
     build_file = "third_party/molten-vk-dylib.BUILD",
-    # visibility = ["//visibility:public"],
 )
 
 new_local_repository(
@@ -18,42 +16,84 @@ new_local_repository(
 )
 
 new_local_repository(
-  name = "molten-vk-xcframework",
-  path = "/usr/local/lib/",
-  build_file = "third_party/molten-vk-xcframework.BUILD",
-)
-
-new_local_repository(
     name = "glfw-include",
     path = "/usr/local/include/GLFW/",
     build_file = "third_party/glfw-include.BUILD",
-    # visibility = ["//visibility:public"],
+)
+
+new_local_repository(
+    name = "local-include",
+    path = "/usr/local/include/",
+    build_file = "third_party/include.BUILD",
+)
+
+new_local_repository(
+    name = "local-lib",
+    path = "/usr/local/lib/",
+    build_file = "third_party/lib.BUILD",
 )
 
 new_local_repository(
     name = "glfw-lib",
     path = "/usr/local/lib/",
     build_file = "third_party/glfw-lib.BUILD",
-    # visibility = ["//visibility:public"],
 )
 
-load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
-git_repository(
-    name = "com_google_googletest",
-    remote = "https://github.com/google/googletest/",
-    branch = "master",
-    visibility = ["//visibility:public"],
+new_local_repository(
+  name = "python-h",
+  path = "/usr/local/anaconda3//include/python3.8/",
+  build_file = "third_party/python3.BUILD"
 )
 
+new_local_repository(
+  name = "node-include",
+  path = "/usr/local/Cellar/node/16.6.2/include/node/",
+  build_file = "third_party/nodeJS.BUILD"
+)
+
+new_local_repository(
+  name = "dev-usr-lib",
+  path = "/Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk/usr/lib/",
+  build_file = "third_party/dev-lib.BUILD",
+)
+
+new_local_repository(
+  name = "dev-usr-include",
+  path = "/Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk/usr/include/",
+  build_file = "third_party/dev-include.BUILD",
+)
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+  name = "com_google_googletest",
+  urls = ["https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip"],
+  strip_prefix = "googletest-609281088cfefc76f9d0ce82e1ff6c30cc3591e5",
+)
+
 http_archive(
   name = "rules_cc",
   urls = ["https://github.com/bazelbuild/rules_cc/archive/40548a2974f1aea06215272d9c2b47a14a24e556.zip"],
   strip_prefix = "rules_cc-40548a2974f1aea06215272d9c2b47a14a24e556",
 )
 
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+# load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+# git_repository(
+#     name = "com_google_googletest",
+#     remote = "https://github.com/google/googletest/",
+#     branch = "master",
+#     visibility = ["//visibility:public"],
+# )
+
+
+# load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+# http_archive(
+#   name = "rules_cc",
+#   urls = ["https://github.com/bazelbuild/rules_cc/archive/40548a2974f1aea06215272d9c2b47a14a24e556.zip"],
+#   strip_prefix = "rules_cc-40548a2974f1aea06215272d9c2b47a14a24e556",
+# )
+
+# load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 
 # http_archive(
@@ -89,3 +129,6 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 # )
 
 # apple_support_dependencies()
+
+# glfw, glm, png, zlib, ogg, vorbis, portaudio, freetype, bzip
+# mat4 :: glm [1][1] = vlukan -1

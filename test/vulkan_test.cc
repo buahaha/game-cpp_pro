@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include <MoltenVK/mvk_vulkan.h>
 #include <GLFW/glfw3.h>
+#include <MoltenVK/mvk_vulkan.h>
 
 TEST(VulkanTest, IfWorks) {
   if (!glfwInit()) {

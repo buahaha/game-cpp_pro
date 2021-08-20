@@ -3,4 +3,7 @@ cc_library(
    name = "molten-vk-include",
    hdrs = glob(["*/**"]),
    visibility = ["//visibility:public"],
+   includes = [
+      "."
+   ],
 )
